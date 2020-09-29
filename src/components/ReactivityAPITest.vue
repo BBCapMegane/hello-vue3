@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { reactive, ref, computed, readonly, watchEffect } from 'vue'
+import { reactive, ref, computed, readonly, watchEffect, watch } from 'vue'
 
 export default {
   setup() {
@@ -46,8 +46,13 @@ export default {
     const countCopy = readonly(count)
 
     // watchEffect
-    // 変更を検知して実行 watch と同じ
+    // 変更を検知して実行
     watchEffect(() => console.log('watchEffect: ' + count.value))
+
+    //  watch
+    //  v2.x の watch と同じ 監視する値を指定する
+    watch(count, () => console.log('watch: ' + count.value))
+
 
     const increment = () => {
       count.value++
